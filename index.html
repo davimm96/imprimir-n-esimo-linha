@@ -1,0 +1,55 @@
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Imprime número igual ao seu valor até a n-ésima linha</title>
+    </head>
+    <style>
+        span{
+            display: none;
+        }
+    </style>
+    <body>
+        <h1>Imprime número igual ao seu valor até a n-ésima linha<br>(1 até 9000)</h1>
+        <input type="number" id="numero"><br>
+        <button onclick="calcular()">Calcular</button>
+        <span>Aguarde...</span>
+        <div id="resposta" style="display:inline"></div><br>
+        <script>
+            var num = document.getElementById("numero").value
+            var numN = parseInt(document.getElementById("numero").value)
+            var res = document.getElementById("resposta")
+            function calcular(){
+                var num = document.getElementById("numero").value
+                    numN = parseInt(document.getElementById("numero").value),
+                    res = document.getElementById("resposta")
+
+                res.innerHTML = ""//Reseta
+                //Impede de clicar novamente no botão
+                document.querySelector("span").style.display = "block"
+                document.querySelector("button").style.display = "none"
+
+                //Calcula...
+                setTimeout(function(){
+                    if(numN > 9000){
+                    alert("digite um número de 1 até 9000")
+                }else{
+                    function contae(min,max) {
+                        res.innerHTML += `${num} `
+                            if(min<max){
+                                contae(++min, max)
+                            }
+                        }
+                        contae(1,numN)
+                        document.querySelector("span").style.display = "none"
+                        document.querySelector("button").style.display = "block"
+                    }
+                },5)
+
+                //Icone no final
+                setTimeout(function(){
+                    res.innerHTML += " \u{1F3C1}"
+                },6) 
+            }
+        </script>
+    </body>
+</html>
